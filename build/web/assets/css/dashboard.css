@@ -1,0 +1,41 @@
+.dashboard_container{
+	width: 350px;
+	margin-top: 12.8rem;
+	background-color: #EEEEEE;
+	height: calc(100vh - 12.8rem);
+
+}
+.flex_wrapper{
+	background-color: #EEEEEE;
+
+}
+
+.catalog{
+	list-style: none;
+}
+
+.catalog_btn{
+	text-align: center;
+	padding: 0.6rem;
+}
+.catalog_btn-link{
+	display: block;
+	padding: 2rem;
+	background-color: #CA6A6A;
+	text-decoration: none;
+	font-size: 1.4rem;
+	border-radius: 15px;
+	color: var(--white-color);
+	margin-left: -1.8rem;
+}
+.catalog_btn-link:hover{
+	background-color: var(--primary-color);
+	color: var(--white-color);
+}
+
+.catalog_btn-link:active{
+	background-color: #000;
+	color: var(--white-color);
+}
+
+

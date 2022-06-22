@@ -1,0 +1,69 @@
+.dbdetail{
+    margin-top: 13.8rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dbdetail_container{
+    margin: 20px;
+    border: 2px solid var(--primary-color);
+    padding: 20px 40px;
+    width: 890px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(183, 30, 30, 0.08);
+}
+
+.dbdetail_img{
+    width: 445px;
+    height: 185px;
+}
+
+.dbdetail_title{
+    font-size: 4rem;
+    font-weight: 500;
+    padding: 20px;
+    color: var(--primary-color);
+}
+.dbdetail_box-detail{
+    text-align: left;
+}
+
+.dbdetail_detail{
+    font-size: 1.6rem; 
+}
+.dbdetail_name-detail{
+    font-weight: 600;
+    font-size: 1.6rem;
+    padding: 10px;
+}
+.dbdetail-btn{
+    text-decoration: none;
+    font-size: 1.6rem;
+    min-width: 600px;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+.dbdetail-btn:hover{
+    background-color: rgba(183, 30, 30, 0.8);
+}
+.dbdetail-btn-null{
+    font-size: 1.6rem;
+    min-width: 600px;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    color: var(--white-color);
+    background-color: #888;
+}
+.dbdetail-btn-null:hover{
+    cursor: auto;
+}

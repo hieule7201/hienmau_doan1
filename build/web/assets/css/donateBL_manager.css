@@ -1,0 +1,17 @@
+body{
+    display: flex;
+    height: 100vh;
+}
+.manager_blood{
+    margin-top: 12.8rem;
+    font-size: 1.6rem;
+}
+.manager_title{
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 2rem;
+}
+.thead_edit{
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}

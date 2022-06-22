@@ -1,0 +1,113 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
+
+import dao.DAO;
+import entity.NHM_TNV;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author Minh Hieu
+ */
+@WebServlet(name = "DonaterAddServlet", urlPatterns = {"/donateradd"})
+public class DonaterAddServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String maNHM = "";
+        String tenNHM = request.getParameter("tenNHM");
+        String gioiTinh = request.getParameter("gioiTinh");
+        String nhomMau = request.getParameter("nhomMau");
+        String benhNen = request.getParameter("benhNen");
+        String diaChi = request.getParameter("diaChi");
+        String sdt = request.getParameter("sdt");
+        String cccd = request.getParameter("cccd");
+        String matKhau = request.getParameter("matKhau");
+        String phonePattern = "^0\\d{9}$";
+        String identifyPattern = "\\d{13}$";
+        DAO dao = new DAO();
+        if(sdt.matches(phonePattern) == false){
+            request.setAttribute("phone_err", "Xem lại định dạng số điện thoại");
+            request.getRequestDispatcher("donater_add.jsp").forward(request, response);
+        }
+        NHM_TNV a = dao.selectNHM(sdt);
+        NHM_TNV b = dao.selectNHMbyID(cccd);
+        if(a != null || b != null){
+            request.setAttribute("all_err", "số điện thoại hoặc căn cước đã được đăng ký");
+            request.getRequestDispatcher("donater_add.jsp").forward(request, response);   
+        }
+        if(cccd.matches(identifyPattern) == false){
+            request.setAttribute("id_err", "Xem lại định dạng căn cước (đủ 13 số)");
+            request.getRequestDispatcher("donater_add.jsp").forward(request, response);
+        }else{
+
+            dao.registerUser(sdt, matKhau,"1");
+            dao.registerNHM(maNHM, tenNHM, gioiTinh, nhomMau, benhNen, diaChi, sdt, cccd, matKhau);
+        dao.registerTNV(maNHM, tenNHM, gioiTinh, diaChi, sdt, cccd, matKhau);
+        response.sendRedirect("./donatermanager");
+        }
+        
+        
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
